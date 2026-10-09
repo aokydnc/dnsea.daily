@@ -312,21 +312,6 @@
                         <span>Terkoneksi langsung dengan kalender header</span>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3">
-                    <div id="subCardRot1" class="bg-slate-950/70 border border-slate-800 rounded-lg p-2.5">
-                        <span class="text-[10px] font-bold text-slate-400 block mb-0.5">Rotasi 1</span>
-                        <div id="subStageRot1" class="text-xs font-bold text-slate-200">--</div>
-                    </div>
-                    <div id="subCardRot2" class="bg-slate-950/70 border border-slate-800 rounded-lg p-2.5">
-                        <span class="text-[10px] font-bold text-slate-400 block mb-0.5">Rotasi 2</span>
-                        <div id="subStageRot2" class="text-xs font-bold text-slate-200">--</div>
-                    </div>
-                    <div id="subCardRot3" class="bg-slate-950/70 border border-slate-800 rounded-lg p-2.5">
-                        <span class="text-[10px] font-bold text-slate-400 block mb-0.5">Rotasi 3</span>
-                        <div id="subStageRot3" class="text-xs font-bold text-slate-200">--</div>
-                    </div>
-                </div>
             </div>
 
             <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl w-full">
@@ -799,9 +784,9 @@
         let savedHeroesList = ["default"];
         let nestState = {};
 
-        const nestList = ["DAILY", "MINOTAUR", "CERBERUS", "MANTICORE", "APOCALYPSE", "SEA DRAGON", "PROFESSOR K", "TYPHOON KIM", "DESERT DRAGON", "MEMORIA 1", "MEMORIA 2", "MEMORIA 3", "MEMORIA 4"];
-        const tab1Nests = ["DAILY", "MINOTAUR", "CERBERUS", "MANTICORE", "APOCALYPSE", "SEA DRAGON"];
-        const tab2Nests = ["PROFESSOR K", "TYPHOON KIM", "DESERT DRAGON", "MEMORIA 1", "MEMORIA 2", "MEMORIA 3", "MEMORIA 4"];
+        const tab1Nests = ["DAILY", "DF", "ABYSS MIRE", "NEST CLEAR", "ABN HELL", "GDN C", "GDN HC", "MEMO DDN", "TKN HELL"];
+        const tab2Nests = ["EVENT", "GUARDIAN", "ANU ARENDEL", "DDN C", "DDN HC", "BDN N", "BDN C", "BDN HC"];
+        const nestList = [...tab1Nests, ...tab2Nests];
 
         // Set Item Selling length to exactly 15 items
         let excelItems = Array.from({length: 15}, () => ({ name: '', price: '' }));
@@ -831,37 +816,37 @@
         const dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
         const defaultLuckyZoneSchedule = {
-            1: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            2: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            3: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            4: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            5: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            6: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            7: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            8: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            9: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            10: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            11: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            12: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            13: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            14: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            15: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            16: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            17: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            18: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            19: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            20: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            21: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            22: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            23: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            24: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            25: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            26: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
-            27: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            28: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
-            29: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            30: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
-            31: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" }
+            1: { r1: "The Vanished Full Moon Desert", r2: "The Vanished Full Moon Desert", r3: "Sea of Sand" },
+            2: { r1: "Eclipse Canyon", r2: "Golden Grassland", r3: "Bronze Crescent Moon Forest Path" },
+            3: { r1: "Sea of Sand", r2: "Bronze Crescent Moon Forest Path", r3: "The Vanished Full Moon Desert" },
+            4: { r1: "Bronze Crescent Moon Forest Path", r2: "The Vanished Full Moon Desert", r3: "Eclipse Canyon" },
+            5: { r1: "The Vanished Full Moon Desert", r2: "Eclipse Canyon", r3: "Golden Grassland" },
+            6: { r1: "Eclipse Canyon", r2: "Golden Grassland", r3: "Sea of Sand" },
+            7: { r1: "Golden Grassland", r2: "Sea of Sand", r3: "The Vanished Full Moon Desert" },
+            8: { r1: "Sea of Sand", r2: "Bronze Crescent Moon Forest Path", r3: "Bronze Crescent Moon Forest Path" },
+            9: { r1: "Eclipse Canyon", r2: "Eclipse Canyon", r3: "Sea of Sand" },
+            10: { r1: "The Vanished Full Moon Desert", r2: "The Vanished Full Moon Desert", r3: "Eclipse Canyon" },
+            11: { r1: "Bronze Crescent Moon Forest Path", r2: "Golden Grassland", r3: "The Vanished Full Moon Desert" },
+            12: { r1: "Sea of Sand", r2: "Eclipse Canyon", r3: "Golden Grassland" },
+            13: { r1: "Golden Grassland", r2: "Sea of Sand", r3: "Sea of Sand" },
+            14: { r1: "Eclipse Canyon", r2: "Bronze Crescent Moon Forest Path", r3: "Bronze Crescent Moon Forest Path" },
+            15: { r1: "The Vanished Full Moon Desert", r2: "Golden Grassland", r3: "The Vanished Full Moon Desert" },
+            16: { r1: "Bronze Crescent Moon Forest Path", r2: "The Vanished Full Moon Desert", r3: "Eclipse Canyon" },
+            17: { r1: "Sea of Sand", r2: "Eclipse Canyon", r3: "Golden Grassland" },
+            18: { r1: "Golden Grassland", r2: "Sea of Sand", r3: "Sea of Sand" },
+            19: { r1: "Eclipse Canyon", r2: "Golden Grassland", r3: "The Vanished Full Moon Desert" },
+            20: { r1: "Bronze Crescent Moon Forest Path", r2: "Bronze Crescent Moon Forest Path", r3: "Bronze Crescent Moon Forest Path" },
+            21: { r1: "The Vanished Full Moon Desert", r2: "The Vanished Full Moon Desert", r3: "Eclipse Canyon" },
+            22: { r1: "Sea of Sand", r2: "Sea of Sand", r3: "The Vanished Full Moon Desert" },
+            23: { r1: "Golden Grassland", r2: "Eclipse Canyon", r3: "Golden Grassland" },
+            24: { r1: "Eclipse Canyon", r2: "Golden Grassland", r3: "Eclipse Canyon" },
+            25: { r1: "The Vanished Full Moon Desert", r2: "The Vanished Full Moon Desert", r3: "Sea of Sand" },
+            26: { r1: "Bronze Crescent Moon Forest Path", r2: "Bronze Crescent Moon Forest Path", r3: "Bronze Crescent Moon Forest Path" },
+            27: { r1: "Sea of Sand", r2: "Sea of Sand", r3: "Golden Grassland" },
+            28: { r1: "Golden Grassland", r2: "Eclipse Canyon", r3: "Eclipse Canyon" },
+            29: { r1: "The Vanished Full Moon Desert", r2: "The Vanished Full Moon Desert", r3: "The Vanished Full Moon Desert" },
+            30: { r1: "Eclipse Canyon", r2: "Golden Grassland", r3: "Bronze Crescent Moon Forest Path" },
+            31: { r1: "Sea of Sand", r2: "Bronze Crescent Moon Forest Path", r3: "Eclipse Canyon" }
         };
 
         let db = null;
@@ -1012,7 +997,12 @@
                 if (titleSaved) siteTitle = titleSaved;
 
                 const rotationSaved = localStorage.getItem('dn_sea_active_rotation');
-                if (rotationSaved) selectedActiveRotation = parseInt(rotationSaved, 10);
+                if (rotationSaved && !isNaN(parseInt(rotationSaved, 10))) {
+                    const parsedRot = parseInt(rotationSaved, 10);
+                    if (parsedRot >= 1 && parsedRot <= 3) {
+                        selectedActiveRotation = parsedRot;
+                    }
+                }
 
                 const resetsSaved = localStorage.getItem('dn_sea_tracker_resets');
                 if (resetsSaved) resetSettings = JSON.parse(resetsSaved);
@@ -1426,6 +1416,10 @@
             const date = dateObj.getUTCDate();
             const day = dateObj.getUTCDay();
 
+            if (!selectedActiveRotation || selectedActiveRotation < 1 || selectedActiveRotation > 3) {
+                selectedActiveRotation = 1;
+            }
+
             const fullDateTextEl = document.getElementById('lzHeaderFullDateText');
             if (fullDateTextEl) {
                 fullDateTextEl.innerText = dayNames[day] + ", " + date + " " + monthNames[month] + " " + year;
@@ -1454,13 +1448,6 @@
 
             const mainStageEl = document.getElementById('lzMainStageTitle');
             if (mainStageEl) mainStageEl.innerText = activeStage;
-
-            const sub1 = document.getElementById('subStageRot1');
-            const sub2 = document.getElementById('subStageRot2');
-            const sub3 = document.getElementById('subStageRot3');
-            if (sub1) sub1.innerText = stageObj.r1;
-            if (sub2) sub2.innerText = stageObj.r2;
-            if (sub3) sub3.innerText = stageObj.r3;
 
             const rotBtn1 = document.getElementById('rotBtn1');
             const rotBtn2 = document.getElementById('rotBtn2');
