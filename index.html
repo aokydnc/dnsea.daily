@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageBrowserTitle">Daily Char Aoky - Lucky Zone Edition</title>
-    <meta name="description" content="Dragon Nest Sea Classic Hero Nest Tracker & Lucky Zone Rotation - Track status FRESH/LIMIT hero serta rotasi Lucky Zone harian.">
+    <title id="pageBrowserTitle">Daily Char Aoky - Lucky Zone & Salary Calculator</title>
+    <meta name="description" content="Dragon Nest Sea Classic Hero Nest Tracker, Lucky Zone Rotation, and Excel-Style Party Salary Calculator.">
     <meta name="theme-color" content="#020617">
     
-    <!-- External Libraries (Tailwind CSS, FontAwesome 6, Google Fonts) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,12 +83,10 @@
         }
     </style>
 </head>
-
 <body class="fantasy-bg text-slate-200 font-sans min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950 antialiased">
 
-    <!-- Header Section -->
-    <header class="border-b border-amber-500/20 bg-slate-900/95 backdrop-blur sticky top-0 z-30 shadow-lg shadow-black/40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-2.5">
+    <header class="border-b border-amber-500/20 bg-slate-900/95 backdrop-blur sticky top-0 z-30 shadow-lg shadow-black/40 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-2.5">
             <div class="flex items-center space-x-3.5">
                 <div class="relative group/headerLogo shrink-0 cursor-pointer" onclick="openLogoModal('__HEADER__')" title="Klik untuk upload / ubah Logo Header HD">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-amber-500/80 bg-slate-950 shadow-md shadow-amber-500/30 flex items-center justify-center p-0 relative">
@@ -119,7 +116,6 @@
                     </div>
 
                     <div class="flex flex-col gap-0.5 text-[11px] text-slate-400 mt-1">
-                        <!-- Daily Reset & Synced Daily Lucky Stage Title -->
                         <div onclick="openResetModal('daily')" class="inline-flex flex-wrap items-center gap-1.5 text-amber-400 font-medium bg-slate-950/90 px-2 py-0.5 rounded border border-slate-800 shadow-sm cursor-pointer hover:border-amber-500/50 transition group/reset1 w-fit" title="Klik untuk ubah waktu Daily Reset">
                             <i class="fa-regular fa-clock text-amber-400 text-[10px]"></i>
                             <span>Daily (<span id="dailyResetTimeLabel">09:00</span> <span id="dailyResetTzLabel">WITA</span>):</span> 
@@ -164,11 +160,10 @@
         </div>
     </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3.5 space-y-3.5">
+    <main class="flex-1 w-full px-4 sm:px-6 lg:px-8 py-3.5 space-y-3.5">
         
-        <!-- Summary Cards for Nest Tracker -->
-        <div id="nestStatsContainer" class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md">
+        <div id="nestStatsContainer" class="grid grid-cols-2 md:grid-cols-4 gap-2.5 w-full">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md flex-1">
                 <div class="p-2 bg-slate-800 rounded-lg text-amber-400">
                     <i class="fa-solid fa-users text-sm"></i>
                 </div>
@@ -178,7 +173,7 @@
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md flex-1">
                 <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg">
                     <i class="fa-solid fa-shield-halved text-sm"></i>
                 </div>
@@ -188,7 +183,7 @@
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md flex-1">
                 <div class="p-2 bg-rose-500/10 text-rose-400 rounded-lg">
                     <i class="fa-solid fa-lock text-sm"></i>
                 </div>
@@ -198,7 +193,7 @@
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 shadow-md flex-1">
                 <div class="p-2 bg-blue-500/10 text-blue-400 rounded-lg">
                     <i class="fa-solid fa-chart-pie text-sm"></i>
                 </div>
@@ -209,27 +204,29 @@
             </div>
         </div>
 
-        <!-- Navigation Bar with Tabs & Rotation Selector -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col md:flex-row items-center justify-between gap-2.5 shadow-md">
-            <div id="searchBoxContainer" class="relative w-full md:w-56">
+        <!-- Navigation Tabs -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col lg:flex-row items-center justify-between gap-2.5 shadow-md w-full">
+            <div id="searchBoxContainer" class="relative w-full lg:w-72">
                 <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-[11px]"></i>
                 <input type="text" id="searchInput" placeholder="Cari nama hero..." class="w-full bg-slate-950 border border-slate-800 text-xs text-slate-200 pl-7 pr-2.5 py-1.5 rounded-lg focus:outline-none focus:border-amber-500 transition placeholder:text-slate-600">
             </div>
 
-            <!-- Tab Buttons -->
-            <div class="flex items-center bg-slate-950 border border-slate-800 p-0.5 rounded-lg overflow-x-auto max-w-full">
-                <button onclick="switchTab(1)" id="tabBtn1" class="px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap">
+            <div class="flex items-center bg-slate-950 border border-slate-800 p-0.5 rounded-lg overflow-x-auto w-full lg:w-auto justify-center">
+                <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap text-center">
                     Daily & Weekly 1
                 </button>
-                <button onclick="switchTab(2)" id="tabBtn2" class="px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white whitespace-nowrap">
+                <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white whitespace-nowrap text-center">
                     Daily & Weekly 2
                 </button>
-                <button onclick="switchTab(3)" id="tabBtn3" class="px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap">
+                <button onclick="switchTab(3)" id="tabBtn3" class="flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5 whitespace-nowrap">
                     <i class="fa-solid fa-clover text-amber-400"></i> Lucky Zone
+                </button>
+                <button onclick="switchTab(4)" id="tabBtn4" class="flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-calculator text-amber-400"></i> Calculator Salary
                 </button>
             </div>
 
-            <div id="nestActionsContainer" class="flex flex-wrap items-center gap-2 text-xs">
+            <div id="nestActionsContainer" class="flex flex-wrap items-center gap-2 text-xs w-full lg:w-auto justify-end">
                 <button onclick="openAddHeroModal()" class="px-2.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm">
                     <i class="fa-solid fa-plus text-[9px]"></i> Tambah Hero
                 </button>
@@ -239,7 +236,6 @@
                 <button id="btnSetAllLimit" class="text-xs text-rose-400 hover:underline font-semibold">Set Limit</button>
             </div>
 
-            <!-- Single Rotation Selector Control -->
             <div id="luckyZoneActionsContainer" class="hidden flex items-center gap-2 text-xs">
                 <span class="text-[11px] font-bold text-slate-400"><i class="fa-solid fa-sliders text-amber-400 mr-1"></i>Pilih Rotasi Bulan Ini:</span>
                 <div class="flex items-center bg-slate-950 border border-amber-500/30 p-0.5 rounded-lg shadow-inner">
@@ -250,9 +246,9 @@
             </div>
         </div>
 
-        <!-- Nest Tracker View (Tab 1 & 2) -->
-        <div id="nestTableView" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
-            <div class="overflow-x-auto">
+        <!-- Nest Tracker View -->
+        <div id="nestTableView" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl w-full">
+            <div class="overflow-x-auto w-full">
                 <table class="w-full text-left border-collapse min-w-[980px]">
                     <thead>
                         <tr id="tableHeaderRow" class="bg-slate-950 border-b border-slate-800 text-xs font-bold text-slate-300 uppercase tracking-wider">
@@ -264,14 +260,11 @@
             </div>
         </div>
 
-        <!-- Lucky Zone Rotation View (Tab 3) -->
-        <div id="luckyZoneView" class="hidden space-y-4">
-            
-            <!-- Daily Header & Synchronized Today's Lucky Stage Banner -->
-            <div class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/40 rounded-xl p-4 shadow-xl relative overflow-hidden">
+        <!-- Lucky Zone View -->
+        <div id="luckyZoneView" class="hidden space-y-4 w-full">
+            <div class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/40 rounded-xl p-4 shadow-xl relative overflow-hidden w-full">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
 
-                <!-- Top Row: Date & Daily Header Overview -->
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800/80 pb-3 mb-3">
                     <div class="flex items-center gap-3">
                         <div class="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl border border-amber-500/40 shrink-0">
@@ -288,7 +281,6 @@
                         </div>
                     </div>
                     
-                    <!-- Realtime Daily Quest Status Indicator -->
                     <div class="flex items-center gap-3 bg-slate-950/90 border border-slate-800 px-3 py-2 rounded-xl text-xs shrink-0">
                         <div class="text-amber-400 text-lg">
                             <i class="fa-solid fa-shield-cat"></i>
@@ -302,7 +294,6 @@
                     </div>
                 </div>
 
-                <!-- Main Highlight: Today's Daily Lucky Stage Map -->
                 <div class="bg-slate-950/90 border-2 border-amber-500/70 rounded-xl p-4 shadow-lg shadow-amber-500/10 flex flex-col md:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 flex items-center justify-center shrink-0">
@@ -322,7 +313,6 @@
                     </div>
                 </div>
 
-                <!-- Secondary Rotations Comparison Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3">
                     <div id="subCardRot1" class="bg-slate-950/70 border border-slate-800 rounded-lg p-2.5">
                         <span class="text-[10px] font-bold text-slate-400 block mb-0.5">Rotasi 1</span>
@@ -339,8 +329,7 @@
                 </div>
             </div>
 
-            <!-- Lucky Zone 31-Day Fixed Rotation Schedule Table -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl w-full">
                 <div class="p-3 bg-slate-950 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-table-list text-amber-400 text-xs"></i>
@@ -349,7 +338,7 @@
                     <span class="text-[11px] text-slate-400">Kolom <span class="text-amber-400 font-bold">Rotasi Aktif</span> disorot otomatis sesuai pilihan Anda.</span>
                 </div>
 
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto w-full">
                     <table class="w-full text-left border-collapse min-w-[700px]">
                         <thead>
                             <tr class="bg-slate-950 border-b border-slate-800 text-xs font-bold text-amber-400 uppercase tracking-wider">
@@ -366,9 +355,140 @@
             </div>
         </div>
 
+        <div id="kalkulatorGajiView" class="hidden space-y-4 w-full">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 bg-blue-600/20 text-blue-400 rounded-xl border border-blue-500/40 shrink-0">
+                            <i class="fa-solid fa-calculator text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] bg-blue-600 text-white font-extrabold px-2 py-0.5 rounded uppercase tracking-wider">EXCEL STYLE CALCULATOR</span>
+                            <h2 class="text-base sm:text-lg font-black text-white mt-0.5">Salary Party Nest</h2>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs">
+                        <button onclick="openExcelResetModal()" class="px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/25 text-rose-400 font-semibold rounded-lg border border-rose-500/30 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Kalkulator
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start font-sans">
+                    
+                    <!-- Item Selling Column (15 Items) -->
+                    <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl lg:col-span-1">
+                        <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                            Item Selling
+                        </div>
+                        <div class="grid grid-cols-12 bg-[#2563eb] text-white font-extrabold text-[11px] py-1.5 px-2 border-b border-blue-700 text-center">
+                            <div class="col-span-2 border-r border-blue-400/30">No</div>
+                            <div class="col-span-6 border-r border-blue-400/30">Item</div>
+                            <div class="col-span-4">Price</div>
+                        </div>
+                        <div id="itemSellingRowsContainer" class="divide-y divide-blue-700/30">
+                        </div>
+                        <div class="grid grid-cols-12 bg-[#2563eb] text-white font-bold text-xs py-2 px-3 items-center border-t border-blue-700">
+                            <div class="col-span-8 text-right pr-3 uppercase">Total</div>
+                            <div id="calcTotalItemSelling" class="col-span-4 text-right font-mono font-bold text-white">0g</div>
+                        </div>
+                    </div>
+
+                    <!-- Stamp Used Column -->
+                    <div class="space-y-4 lg:col-span-1">
+                        <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl">
+                            <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                                Stamp Used
+                            </div>
+                            <div class="grid grid-cols-12 bg-[#2563eb] text-white font-extrabold text-[11px] py-1.5 px-2 border-b border-blue-700 text-center">
+                                <div class="col-span-5 border-r border-blue-400/30">Nick Party</div>
+                                <div class="col-span-3 border-r border-blue-400/30">Stamp</div>
+                                <div class="col-span-4">Gold</div>
+                            </div>
+                            <div id="stampUsedRowsContainer" class="divide-y divide-blue-900/40">
+                            </div>
+                            <div class="grid grid-cols-12 bg-[#2563eb] text-white font-bold text-xs py-2 px-3 items-center border-t border-blue-700">
+                                <div class="col-span-8 text-right pr-3 uppercase">TOTAL</div>
+                                <div id="calcTotalStampGold" class="col-span-4 text-right font-mono font-bold text-white">0,00g</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl">
+                            <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                                PARTY SALARY
+                            </div>
+                            <div class="divide-y divide-blue-900/40 text-xs">
+                                <div class="grid grid-cols-12 items-center">
+                                    <div class="col-span-7 bg-[#2563eb] text-white font-bold py-2 px-3 border-r border-blue-700">Total Selling</div>
+                                    <div id="salarySummaryTotalSelling" class="col-span-5 bg-[#22c55e] text-slate-950 font-mono font-bold py-2 px-3 text-right">0,00g</div>
+                                </div>
+                                <div class="grid grid-cols-12 items-center">
+                                    <div class="col-span-7 bg-[#2563eb] text-white font-bold py-2 px-3 border-r border-blue-700">Stamp</div>
+                                    <div id="salarySummaryStamp" class="col-span-5 bg-[#ef4444] text-white font-mono font-bold py-2 px-3 text-right">0,00g</div>
+                                </div>
+                                <div class="grid grid-cols-12 items-center">
+                                    <div class="col-span-7 bg-[#2563eb] text-white font-bold py-2 px-3 border-r border-blue-700">Trade / Mail Fee</div>
+                                    <div id="salarySummaryTradeFee" class="col-span-5 bg-[#ef4444] text-white font-mono font-bold py-2 px-3 text-right">0,00g</div>
+                                </div>
+                            </div>
+                            <div class="bg-[#2563eb] text-white font-mono font-bold text-sm py-2.5 px-3 text-center border-t border-blue-700" id="partySalaryNetTotal">
+                                0,00g
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stamp Price & Party Nest -->
+                    <div class="space-y-4 lg:col-span-1">
+                        <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl">
+                            <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                                Stamp Price
+                            </div>
+                            <div class="bg-[#22c55e] text-slate-950 font-mono font-bold text-center text-sm py-2 px-3">
+                                <input type="text" id="stampUnitPriceInput" value="4g" onfocus="this.value='';" oninput="this.value=this.value.replace(/[^0-9.]/g, ''); calculateExcelSalary();" onblur="formatStampUnitPrice(this)" class="w-full bg-transparent text-center text-slate-950 font-mono font-bold outline-none focus:outline-none focus:ring-0" placeholder="0g">
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl">
+                            <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                                Trade / Mail Fee
+                            </div>
+                            <div class="grid grid-cols-2 text-xs font-mono font-bold">
+                                <div class="bg-[#eab308] text-slate-950 py-2 px-3 text-center border-r border-blue-700/30">
+                                    <input type="text" id="tradeFeeTotalInput" value="1g" onfocus="this.value='';" oninput="this.value=this.value.replace(/[^0-9.]/g, ''); calculateExcelSalary();" onblur="formatTradeFeeInput(this)" class="w-full bg-transparent text-center text-slate-950 font-bold outline-none focus:outline-none focus:ring-0" placeholder="0g">
+                                </div>
+                                <div class="bg-[#ef4444] text-white py-2 px-3 text-center font-bold" id="tradeFeeRedDisplay">8,00g</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 border border-blue-500/80 rounded-lg overflow-hidden shadow-xl">
+                            <div class="bg-[#2563eb] text-white font-bold text-xs py-2 px-3 text-center uppercase tracking-wider border-b border-blue-700">
+                                8 Man Party Nest
+                            </div>
+                            <div class="grid grid-cols-12 bg-[#2563eb] text-white font-extrabold text-[11px] py-1.5 px-2 border-b border-blue-700 text-center">
+                                <div class="col-span-6 border-r border-blue-400/30">Member</div>
+                                <div class="col-span-6">(+)Stamp</div>
+                            </div>
+                            <div id="memberShareRowsContainer" class="divide-y divide-blue-700/30">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="bg-[#22c55e] border-2 border-[#16a34a] rounded-xl py-3 px-6 text-center shadow-2xl space-y-1">
+                    <div class="text-xs sm:text-sm font-extrabold text-slate-950 tracking-wider uppercase">
+                        SALARY / PLAYER
+                    </div>
+                    <div id="bigFinalPayoutDisplay" class="text-3xl sm:text-4xl font-black text-slate-950 font-mono tracking-tight">
+                        @0,00g
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
-    <!-- Calendar Modal -->
     <div id="calendarModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 max-w-sm w-full shadow-2xl space-y-3 max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
@@ -398,7 +518,6 @@
 
                 <div id="calDaysGrid" class="grid grid-cols-7 gap-1"></div>
 
-                <!-- Live Lucky Zone Preview for Selected Date in Calendar -->
                 <div id="calSelectedLuckyZoneBox" class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2.5 text-xs space-y-1">
                     <div class="flex items-center justify-between text-[11px] font-bold text-amber-400">
                         <span id="calLzTitle"><i class="fa-solid fa-clover mr-1"></i>Lucky Stage:</span>
@@ -475,6 +594,48 @@
             <div class="flex items-center justify-end pt-2 border-t border-slate-800 gap-1.5">
                 <button onclick="closeMasterResetModal()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-semibold transition">Batal</button>
                 <button onclick="executeMasterReset()" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded text-[11px] font-bold transition">Ya, Reset Semua</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Excel Salary Reset Confirmation Modal -->
+    <div id="excelResetModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 max-w-md w-full shadow-2xl space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+                <div class="flex items-center gap-2 text-rose-400">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <h3 class="text-xs font-bold text-white">Konfirmasi Reset Calculator Salary</h3>
+                </div>
+                <button onclick="closeExcelResetModal()" class="text-slate-500 hover:text-slate-300 text-xs"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-2.5 text-xs text-slate-300">
+                <p>Apakah Anda yakin ingin mereset calculator salary? Berikut adalah daftar item yang akan dikembalikan ke awal:</p>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-2">
+                    <div class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-[10px]"></i>
+                        <div><strong class="text-white">15 Item Selling:</strong> Seluruh nama item &amp; harga dikosongkan total.</div>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-[10px]"></i>
+                        <div><strong class="text-white">Stamp Used &amp; Member:</strong> Jumlah stamp dikosongkan &amp; Nick Party dikembalikan ke default (Nick 1 s/d 8).</div>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-[10px]"></i>
+                        <div><strong class="text-white">Stamp Price:</strong> Dikembalikan ke default <span class="text-amber-400 font-mono font-bold">4g</span>.</div>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-[10px]"></i>
+                        <div><strong class="text-white">Trade / Mail Fee:</strong> Dikembalikan ke default <span class="text-amber-400 font-mono font-bold">1g</span>.</div>
+                    </div>
+                </div>
+                <p class="text-amber-400 font-medium text-[11px]">Proses reset akan langsung disimpan secara otomatis.</p>
+            </div>
+            <div class="flex items-center justify-end pt-2 border-t border-slate-800 gap-1.5">
+                <button onclick="closeExcelResetModal()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-[11px] font-semibold transition">Batal</button>
+                <button onclick="executeExcelReset()" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded text-[11px] font-bold transition flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right text-[10px]"></i>
+                    <span>Ya, Reset Sekarang</span>
+                </button>
             </div>
         </div>
     </div>
@@ -629,76 +790,23 @@
     </footer>
 
     <script>
-        // Default Constants
-        const initialHeroes = ["default"];
-        const tab1Nests = ["DAILY", "NEST CLEAR", "ABN HELL", "GDN C", "GDN HC", "MEMO DDN", "TKN HELL"];
-        const tab2Nests = ["EVENT", "GUARDIAN", "ANU ARENDEL", "DDN C", "DDN HC", "BDN N", "BDN C", "BDN HC"];
-        const nestList = [...tab1Nests, ...tab2Nests];
-
-        // Fixed Level 70 Lucky Stage Schedule for Day 1..31
-        const defaultLuckyZoneSchedule = {
-            1:  { r1: "The Vanished Full Moon Desert",       r2: "The Vanished Full Moon Desert",       r3: "Sea of Sand" },
-            2:  { r1: "Eclipse Canyon",                      r2: "Golden Grassland",                    r3: "Bronze Crescent Moon Forest Path" },
-            3:  { r1: "Sea of Sand",                         r2: "Bronze Crescent Moon Forest Path",    r3: "The Vanished Full Moon Desert" },
-            4:  { r1: "Bronze Crescent Moon Forest Path",    r2: "The Vanished Full Moon Desert",       r3: "Eclipse Canyon" },
-            5:  { r1: "The Vanished Full Moon Desert",       r2: "Eclipse Canyon",                      r3: "Golden Grassland" },
-            6:  { r1: "Eclipse Canyon",                      r2: "Golden Grassland",                    r3: "Sea of Sand" },
-            7:  { r1: "Golden Grassland",                    r2: "Sea of Sand",                         r3: "The Vanished Full Moon Desert" },
-            8:  { r1: "Sea of Sand",                         r2: "Bronze Crescent Moon Forest Path",    r3: "Bronze Crescent Moon Forest Path" },
-            9:  { r1: "Eclipse Canyon",                      r2: "Eclipse Canyon",                      r3: "Sea of Sand" },
-            10: { r1: "The Vanished Full Moon Desert",       r2: "The Vanished Full Moon Desert",       r3: "Eclipse Canyon" },
-            11: { r1: "Bronze Crescent Moon Forest Path",    r2: "Golden Grassland",                    r3: "The Vanished Full Moon Desert" },
-            12: { r1: "Sea of Sand",                         r2: "Eclipse Canyon",                      r3: "Golden Grassland" },
-            13: { r1: "Golden Grassland",                    r2: "Sea of Sand",                         r3: "Sea of Sand" },
-            14: { r1: "Eclipse Canyon",                      r2: "Bronze Crescent Moon Forest Path",    r3: "Bronze Crescent Moon Forest Path" },
-            15: { r1: "The Vanished Full Moon Desert",       r2: "Golden Grassland",                    r3: "The Vanished Full Moon Desert" },
-            16: { r1: "Bronze Crescent Moon Forest Path",    r2: "The Vanished Full Moon Desert",       r3: "Eclipse Canyon" },
-            17: { r1: "Sea of Sand",                         r2: "Eclipse Canyon",                      r3: "Golden Grassland" },
-            18: { r1: "Golden Grassland",                    r2: "Sea of Sand",                         r3: "Sea of Sand" },
-            19: { r1: "Eclipse Canyon",                      r2: "Golden Grassland",                    r3: "The Vanished Full Moon Desert" },
-            20: { r1: "Bronze Crescent Moon Forest Path",    r2: "Bronze Crescent Moon Forest Path",    r3: "Bronze Crescent Moon Forest Path" },
-            21: { r1: "The Vanished Full Moon Desert",       r2: "The Vanished Full Moon Desert",       r3: "Eclipse Canyon" },
-            22: { r1: "Sea of Sand",                         r2: "Sea of Sand",                         r3: "The Vanished Full Moon Desert" },
-            23: { r1: "Golden Grassland",                    r2: "Eclipse Canyon",                      r3: "Golden Grassland" },
-            24: { r1: "Eclipse Canyon",                      r2: "Golden Grassland",                    r3: "Eclipse Canyon" },
-            25: { r1: "The Vanished Full Moon Desert",       r2: "The Vanished Full Moon Desert",       r3: "Sea of Sand" },
-            26: { r1: "Bronze Crescent Moon Forest Path",    r2: "Bronze Crescent Moon Forest Path",    r3: "Bronze Crescent Moon Forest Path" },
-            27: { r1: "Sea of Sand",                         r2: "Sea of Sand",                         r3: "Golden Grassland" },
-            28: { r1: "Golden Grassland",                    r2: "Eclipse Canyon",                      r3: "Eclipse Canyon" },
-            29: { r1: "The Vanished Full Moon Desert",       r2: "The Vanished Full Moon Desert",       r3: "The Vanished Full Moon Desert" },
-            30: { r1: "Eclipse Canyon",                      r2: "Golden Grassland",                    r3: "Bronze Crescent Moon Forest Path" },
-            31: { r1: "Sea of Sand",                         r2: "Bronze Crescent Moon Forest Path",    r3: "Eclipse Canyon" }
-        };
-
-        let activeTab = 1;
-        let selectedActiveRotation = 1; // Default Rotasi 1
-        const heroLogos = {};
-
-        const defaultHolidays = {
-            "2026-01-01": "Tahun Baru Masehi",
-            "2026-01-16": "Isra Mikraj Nabi Muhammad SAW",
-            "2026-02-17": "Tahun Baru Imlek",
-            "2026-03-19": "Hari Suci Nyepi",
-            "2026-03-20": "Hari Raya Idul Fitri",
-            "2026-03-21": "Hari Raya Idul Fitri",
-            "2026-04-03": "Wafat Isa Almasih",
-            "2026-05-01": "Hari Buruh Internasional",
-            "2026-05-14": "Kenaikan Isa Almasih",
-            "2026-05-27": "Hari Raya Idul Adha",
-            "2026-05-31": "Hari Raya Waisak",
-            "2026-06-16": "Tahun Baru Islam",
-            "2026-08-17": "Hari Kemerdekaan RI",
-            "2026-08-25": "Maulid Nabi Muhammad SAW",
-            "2026-12-25": "Hari Raya Natal",
-            "2027-01-01": "Tahun Baru Masehi"
-        };
-
-        let nestState = {};
-        let customLogos = {};
-        let logoFitMode = {};
-        let savedHeroesList = [];
-        let activeLogoTarget = "";
         let siteTitle = "isi judul di sini";
+        let customLogos = {};
+        let heroLogos = {};
+        let logoFitMode = {};
+        let activeLogoTarget = "";
+
+        let savedHeroesList = ["default"];
+        let nestState = {};
+
+        const nestList = ["DAILY", "MINOTAUR", "CERBERUS", "MANTICORE", "APOCALYPSE", "SEA DRAGON", "PROFESSOR K", "TYPHOON KIM", "DESERT DRAGON", "MEMORIA 1", "MEMORIA 2", "MEMORIA 3", "MEMORIA 4"];
+        const tab1Nests = ["DAILY", "MINOTAUR", "CERBERUS", "MANTICORE", "APOCALYPSE", "SEA DRAGON"];
+        const tab2Nests = ["PROFESSOR K", "TYPHOON KIM", "DESERT DRAGON", "MEMORIA 1", "MEMORIA 2", "MEMORIA 3", "MEMORIA 4"];
+
+        // Set Item Selling length to exactly 15 items
+        let excelItems = Array.from({length: 15}, () => ({ name: '', price: '' }));
+        let excelStamps = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1), count: '' }));
+        let excelMembers = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1) }));
 
         let resetSettings = {
             dailyHour: 9,
@@ -709,266 +817,139 @@
             weeklyMinute: 0,
             weeklyTzOffset: 8
         };
+
+        let selectedActiveRotation = 1;
+        let activeTab = 1;
         let activeResetType = "";
 
-        let calCurrentDate = new Date();
         let selectedCalendarDateKey = "";
+        let calCurrentDate = new Date();
         let customDateNotes = {};
-        let pendingRotationTarget = 1;
+        let defaultHolidays = {};
 
-        const dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
         const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-        const tzMap = { "7": "WIB", "8": "WITA", "9": "WIT" };
+        const dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
-        let dbInstance = null;
+        const defaultLuckyZoneSchedule = {
+            1: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            2: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            3: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            4: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            5: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            6: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            7: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            8: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            9: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            10: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            11: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            12: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            13: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            14: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            15: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            16: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            17: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            18: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            19: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            20: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            21: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            22: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            23: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            24: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            25: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            26: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" },
+            27: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            28: { r1: "Arua", r2: "Kahnstablo", r3: "Chilwinds" },
+            29: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            30: { r1: "Chilwinds", r2: "Arua", r3: "Kahnstablo" },
+            31: { r1: "Kahnstablo", r2: "Chilwinds", r3: "Arua" }
+        };
 
+        let db = null;
         function initIndexedDB() {
             return new Promise((resolve) => {
-                if (!window.indexedDB) {
-                    console.warn("IndexedDB tidak didukung browser ini. Fallback ke LocalStorage.");
-                    resolve(null);
-                    return;
-                }
-                const request = indexedDB.open("DNTrackerDatabase", 1);
-                request.onupgradeneeded = function(e) {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains("imageLogos")) {
-                        db.createObjectStore("imageLogos", { keyPath: "id" });
-                    }
-                };
-                request.onsuccess = function(e) {
-                    dbInstance = e.target.result;
-                    resolve(dbInstance);
-                };
-                request.onerror = function() {
-                    console.warn("Gagal membuka IndexedDB.");
-                    resolve(null);
-                };
-            });
-        }
-
-        function saveLogoToIDB(id, base64Data) {
-            return new Promise((resolve) => {
-                if (!dbInstance) return resolve(false);
                 try {
-                    const tx = dbInstance.transaction("imageLogos", "readwrite");
-                    const store = tx.objectStore("imageLogos");
-                    store.put({ id: id, data: base64Data, updatedAt: Date.now() });
-                    tx.oncomplete = function() { resolve(true); };
-                    tx.onerror = function() { resolve(false); };
+                    const request = indexedDB.open('DNTrackerDB', 1);
+                    request.onupgradeneeded = function(e) {
+                        const database = e.target.result;
+                        if (!database.objectStoreNames.contains('logos')) {
+                            database.createObjectStore('logos');
+                        }
+                    };
+                    request.onsuccess = function(e) {
+                        db = e.target.result;
+                        loadLogosFromIDB().then(resolve);
+                    };
+                    request.onerror = function() {
+                        resolve();
+                    };
                 } catch(e) {
-                    resolve(false);
-                }
-            });
-        }
-
-        function removeLogoFromIDB(id) {
-            return new Promise((resolve) => {
-                if (!dbInstance) return resolve(false);
-                try {
-                    const tx = dbInstance.transaction("imageLogos", "readwrite");
-                    const store = tx.objectStore("imageLogos");
-                    store.delete(id);
-                    tx.oncomplete = function() { resolve(true); };
-                    tx.onerror = function() { resolve(false); };
-                } catch(e) {
-                    resolve(false);
+                    resolve();
                 }
             });
         }
 
         function loadLogosFromIDB() {
             return new Promise((resolve) => {
-                if (!dbInstance) return resolve({});
+                if (!db) { resolve(); return; }
                 try {
-                    const tx = dbInstance.transaction("imageLogos", "readonly");
-                    const store = tx.objectStore("imageLogos");
-                    const req = store.getAll();
+                    const tx = db.transaction('logos', 'readonly');
+                    const store = tx.objectStore('logos');
+                    const req = store.getAllKeys();
                     req.onsuccess = function() {
-                        const logos = {};
-                        if (req.result && Array.isArray(req.result)) {
-                            req.result.forEach(item => {
-                                logos[item.id] = item.data;
-                            });
-                        }
-                        resolve(logos);
+                        const keys = req.result;
+                        let loaded = 0;
+                        if (keys.length === 0) { resolve(); return; }
+                        keys.forEach(key => {
+                            const getReq = store.get(key);
+                            getReq.onsuccess = function() {
+                                if (getReq.result) customLogos[key] = getReq.result;
+                                loaded++;
+                                if (loaded === keys.length) resolve();
+                            };
+                            getReq.onerror = function() {
+                                loaded++;
+                                if (loaded === keys.length) resolve();
+                            };
+                        });
                     };
-                    req.onerror = function() { resolve({}); };
+                    req.onerror = function() { resolve(); };
                 } catch(e) {
-                    resolve({});
+                    resolve();
                 }
             });
         }
 
-        function compressAndProcessImage(fileOrUrl, maxDim = 1600) {
-            return new Promise((resolve, reject) => {
-                if (!fileOrUrl) return resolve(null);
-
-                const img = new Image();
-                img.crossOrigin = "anonymous";
-
-                img.onload = function() {
-                    try {
-                        const canvas = document.createElement('canvas');
-                        let w = img.width;
-                        let h = img.height;
-
-                        if (w > h) {
-                            if (w > maxDim) {
-                                h = Math.round((h * maxDim) / w);
-                                w = maxDim;
-                            }
-                        } else {
-                            if (h > maxDim) {
-                                w = Math.round((w * maxDim) / h);
-                                w = maxDim;
-                            }
-                        }
-
-                        canvas.width = w;
-                        canvas.height = h;
-                        const ctx = canvas.getContext('2d');
-                        ctx.imageSmoothingEnabled = true;
-                        ctx.imageSmoothingQuality = 'high';
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.drawImage(img, 0, 0, w, h);
-
-                        const dataUrl = canvas.toDataURL('image/png', 0.95);
-                        resolve(dataUrl);
-                    } catch (err) {
-                        reject(err);
-                    }
-                };
-
-                img.onerror = function(err) {
-                    reject("Gagal memuat gambar!");
-                };
-
-                if (typeof fileOrUrl === 'string') {
-                    img.src = fileOrUrl;
-                } else {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        img.src = e.target.result;
-                    };
-                    reader.onerror = function(err) { reject(err); };
-                    reader.readAsDataURL(fileOrUrl);
-                }
-            });
-        }
-
-        async function loadData() {
-            await initIndexedDB();
-
-            const savedData = localStorage.getItem('dn_sea_tracker_data');
-            const savedLogosLS = localStorage.getItem('dn_sea_tracker_logos');
-            const savedFitModesLS = localStorage.getItem('dn_sea_tracker_fit');
-            const savedList = localStorage.getItem('dn_sea_tracker_list');
-            const savedTitle = localStorage.getItem('dn_sea_tracker_title');
-            const savedResetSettings = localStorage.getItem('dn_sea_tracker_resets');
-            const savedDateNotes = localStorage.getItem('dn_sea_tracker_notes');
-            
-            if (savedTitle !== null) siteTitle = savedTitle;
-            updateTitleDisplay();
-
-            if (savedResetSettings) {
-                try { resetSettings = JSON.parse(savedResetSettings); }
-                catch(e) {}
-            }
-
-            checkMonthRotation();
-
-            if (savedFitModesLS) {
-                try { logoFitMode = JSON.parse(savedFitModesLS); }
-                catch(e) { logoFitMode = {}; }
-            }
-
-            if (savedDateNotes) {
-                try { customDateNotes = JSON.parse(savedDateNotes); }
-                catch(e) { customDateNotes = {}; }
-            }
-
-            let idbLogos = {};
-            try {
-                idbLogos = await loadLogosFromIDB();
-            } catch(e) {}
-
-            let lsLogos = {};
-            if (savedLogosLS) {
-                try { lsLogos = JSON.parse(savedLogosLS); } catch(e) {}
-            }
-
-            customLogos = Object.assign({}, lsLogos, idbLogos);
-
-            if (savedList) {
-                try { savedHeroesList = JSON.parse(savedList); }
-                catch(e) { savedHeroesList = [...initialHeroes]; }
-            } else {
-                savedHeroesList = [...initialHeroes];
-            }
-
-            if (savedData) {
+        function saveLogoToIDB(key, val) {
+            return new Promise((resolve) => {
+                if (!db) { resolve(); return; }
                 try {
-                    const parsedState = JSON.parse(savedData);
-                    const newNestState = {};
-                    savedHeroesList.forEach(function(hero) {
-                        if (parsedState[hero]) {
-                            newNestState[hero] = parsedState[hero];
-                        } else {
-                            newNestState[hero] = {};
-                            nestList.forEach(function(nest) {
-                                newNestState[hero][nest] = "FRESH";
-                            });
-                        }
-                    });
-                    nestState = newNestState;
-                    saveData();
-                } catch (e) {
-                    initDefaultState();
+                    const tx = db.transaction('logos', 'readwrite');
+                    const store = tx.objectStore('logos');
+                    store.put(val, key);
+                    tx.oncomplete = function() { resolve(); };
+                    tx.onerror = function() { resolve(); };
+                } catch(e) {
+                    resolve();
                 }
-            } else {
-                initDefaultState();
-            }
-
-            updateHeaderLogoDisplay();
-            updateResetLabels();
-            updateHeaderCalendarDisplay();
-            renderTable();
-            renderLuckyZone();
-        }
-
-        function initDefaultState() {
-            savedHeroesList = [...initialHeroes];
-            nestState = {};
-            savedHeroesList.forEach(function(hero) {
-                nestState[hero] = {};
-                nestList.forEach(function(nest) {
-                    nestState[hero][nest] = "FRESH";
-                });
             });
-            saveData();
         }
 
-        function saveData() {
-            try { 
-                localStorage.setItem('dn_sea_tracker_data', JSON.stringify(nestState)); 
-                localStorage.setItem('dn_sea_tracker_list', JSON.stringify(savedHeroesList));
-                localStorage.setItem('dn_sea_tracker_notes', JSON.stringify(customDateNotes));
-                localStorage.setItem('dn_sea_tracker_fit', JSON.stringify(logoFitMode));
-                localStorage.setItem('dn_sea_active_rotation', selectedActiveRotation);
-            } 
-            catch (e) { showToast('Gagal menyimpan data browser!', true); }
-            updateStats();
+        function removeLogoFromIDB(key) {
+            return new Promise((resolve) => {
+                if (!db) { resolve(); return; }
+                try {
+                    const tx = db.transaction('logos', 'readwrite');
+                    const store = tx.objectStore('logos');
+                    store.delete(key);
+                    tx.oncomplete = function() { resolve(); };
+                    tx.onerror = function() { resolve(); };
+                } catch(e) {
+                    resolve();
+                }
+            });
         }
 
         async function saveCustomLogosData() {
-            try {
-                localStorage.setItem('dn_sea_tracker_logos', JSON.stringify(customLogos));
-                localStorage.setItem('dn_sea_tracker_fit', JSON.stringify(logoFitMode));
-            } catch (e) {
-                console.warn("LocalStorage penuh, menyimpan ke IndexedDB.");
-            }
-
             for (const key in customLogos) {
                 if (customLogos[key]) {
                     await saveLogoToIDB(key, customLogos[key]);
@@ -976,24 +957,427 @@
             }
         }
 
+        function compressAndProcessImage(fileOrUrl, maxDim = 1600) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.onload = function() {
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > maxDim || height > maxDim) {
+                        if (width > height) {
+                            height = Math.round((height * maxDim) / width);
+                            width = maxDim;
+                        } else {
+                            width = Math.round((width * maxDim) / height);
+                            height = maxDim;
+                        }
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    resolve(canvas.toDataURL('image/png', 0.92));
+                };
+                img.onerror = function(e) { reject(e); };
+                if (typeof fileOrUrl === 'string') {
+                    img.src = fileOrUrl;
+                } else if (fileOrUrl instanceof File) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) { img.src = e.target.result; };
+                    reader.onerror = function(e) { reject(e); };
+                    reader.readAsDataURL(fileOrUrl);
+                } else {
+                    reject(new Error('Invalid image input'));
+                }
+            });
+        }
+
+        function initDefaultState() {
+            savedHeroesList = ["default"];
+            nestState = { "default": {} };
+            nestList.forEach(nest => {
+                nestState["default"][nest] = "FRESH";
+            });
+            excelItems = Array.from({length: 15}, () => ({ name: '', price: '' }));
+            excelStamps = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1), count: '' }));
+            excelMembers = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1) }));
+            saveData();
+        }
+
+        function loadData() {
+            try {
+                const titleSaved = localStorage.getItem('dn_sea_tracker_title');
+                if (titleSaved) siteTitle = titleSaved;
+
+                const rotationSaved = localStorage.getItem('dn_sea_active_rotation');
+                if (rotationSaved) selectedActiveRotation = parseInt(rotationSaved, 10);
+
+                const resetsSaved = localStorage.getItem('dn_sea_tracker_resets');
+                if (resetsSaved) resetSettings = JSON.parse(resetsSaved);
+
+                const listSaved = localStorage.getItem('dn_sea_tracker_list');
+                if (listSaved) savedHeroesList = JSON.parse(listSaved);
+
+                const dataSaved = localStorage.getItem('dn_sea_tracker_data');
+                if (dataSaved) nestState = JSON.parse(dataSaved);
+
+                const itemsSaved = localStorage.getItem('dn_sea_excel_items');
+                if (itemsSaved) {
+                    excelItems = JSON.parse(itemsSaved);
+                    // Standardize to exactly 15 items
+                    if (excelItems.length > 15) {
+                        excelItems = excelItems.slice(0, 15);
+                    } else {
+                        while (excelItems.length < 15) {
+                            excelItems.push({ name: '', price: '' });
+                        }
+                    }
+                }
+
+                const stampsSaved = localStorage.getItem('dn_sea_excel_stamps');
+                if (stampsSaved) {
+                    excelStamps = JSON.parse(stampsSaved);
+                    excelMembers = excelStamps.map(s => ({ nick: s.nick }));
+                }
+
+                const notesSaved = localStorage.getItem('dn_sea_tracker_date_notes');
+                if (notesSaved) customDateNotes = JSON.parse(notesSaved);
+
+                const fitSaved = localStorage.getItem('dn_sea_tracker_fit');
+                if (fitSaved) logoFitMode = JSON.parse(fitSaved);
+
+                if (!savedHeroesList || savedHeroesList.length === 0) {
+                    initDefaultState();
+                }
+            } catch (e) {
+                initDefaultState();
+            }
+
+            updateTitleDisplay();
+            updateResetLabels();
+            initIndexedDB().then(() => {
+                updateHeaderLogoDisplay();
+                renderTable();
+                renderLuckyZone();
+                renderExcelSalary();
+            });
+        }
+
+        function saveData() {
+            try {
+                localStorage.setItem('dn_sea_tracker_title', siteTitle);
+                localStorage.setItem('dn_sea_active_rotation', selectedActiveRotation);
+                localStorage.setItem('dn_sea_tracker_resets', JSON.stringify(resetSettings));
+                localStorage.setItem('dn_sea_tracker_list', JSON.stringify(savedHeroesList));
+                localStorage.setItem('dn_sea_tracker_data', JSON.stringify(nestState));
+                localStorage.setItem('dn_sea_excel_items', JSON.stringify(excelItems));
+                localStorage.setItem('dn_sea_excel_stamps', JSON.stringify(excelStamps));
+                localStorage.setItem('dn_sea_tracker_date_notes', JSON.stringify(customDateNotes));
+                localStorage.setItem('dn_sea_tracker_fit', JSON.stringify(logoFitMode));
+            } catch (e) {}
+            updateStats();
+        }
+
         function updateTitleDisplay() {
-            const headerTitleEl = document.getElementById('headerTitleText');
-            const browserTitleEl = document.getElementById('pageBrowserTitle');
-            if (headerTitleEl) headerTitleEl.innerText = siteTitle;
-            if (browserTitleEl) browserTitleEl.innerText = "Dragon Nest Tracker - " + siteTitle;
+            const el = document.getElementById('headerTitleText');
+            if (el) el.innerText = siteTitle;
+            document.title = siteTitle + " - Lucky Zone & Salary Calculator";
         }
 
         function updateResetLabels() {
-            const dHour = String(resetSettings.dailyHour).padStart(2, '0');
-            const dMin = String(resetSettings.dailyMinute).padStart(2, '0');
-            document.getElementById('dailyResetTimeLabel').innerText = dHour + ":" + dMin;
-            document.getElementById('dailyResetTzLabel').innerText = tzMap[resetSettings.dailyTzOffset] || "WITA";
+            const tzLabels = { 7: 'WIB', 8: 'WITA', 9: 'WIT' };
+            const dTz = document.getElementById('dailyResetTzLabel');
+            const dTime = document.getElementById('dailyResetTimeLabel');
+            if (dTz) dTz.innerText = tzLabels[resetSettings.dailyTzOffset] || 'WITA';
+            if (dTime) dTime.innerText = String(resetSettings.dailyHour).padStart(2, '0') + ':' + String(resetSettings.dailyMinute).padStart(2, '0');
 
-            document.getElementById('weeklyResetDayLabel').innerText = dayNames[resetSettings.weeklyDay];
-            const wHour = String(resetSettings.weeklyHour).padStart(2, '0');
-            const wMin = String(resetSettings.weeklyMinute).padStart(2, '0');
-            document.getElementById('weeklyResetTimeLabel').innerText = wHour + ":" + wMin;
-            document.getElementById('weeklyResetTzLabel').innerText = tzMap[resetSettings.weeklyTzOffset] || "WITA";
+            const wDay = document.getElementById('weeklyResetDayLabel');
+            const wTz = document.getElementById('weeklyResetTzLabel');
+            const wTime = document.getElementById('weeklyResetTimeLabel');
+            if (wDay) wDay.innerText = dayNames[resetSettings.weeklyDay] || 'Sabtu';
+            if (wTz) wTz.innerText = tzLabels[resetSettings.weeklyTzOffset] || 'WITA';
+            if (wTime) wTime.innerText = String(resetSettings.weeklyHour).padStart(2, '0') + ':' + String(resetSettings.weeklyMinute).padStart(2, '0');
+        }
+
+        function switchTab(tabNum) {
+            activeTab = tabNum;
+            const b1 = document.getElementById('tabBtn1');
+            const b2 = document.getElementById('tabBtn2');
+            const b3 = document.getElementById('tabBtn3');
+            const b4 = document.getElementById('tabBtn4');
+
+            const nestTable = document.getElementById('nestTableView');
+            const luckyView = document.getElementById('luckyZoneView');
+            const kalkulatorView = document.getElementById('kalkulatorGajiView');
+
+            const nestStats = document.getElementById('nestStatsContainer');
+            const nestActions = document.getElementById('nestActionsContainer');
+            const searchBox = document.getElementById('searchBoxContainer');
+            const lzActions = document.getElementById('luckyZoneActionsContainer');
+
+            const activeClass = "flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap text-center";
+            const inactiveClass = "flex-1 lg:flex-none px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white whitespace-nowrap text-center";
+
+            if (b1) b1.className = tabNum === 1 ? activeClass : inactiveClass;
+            if (b2) b2.className = tabNum === 2 ? activeClass : inactiveClass;
+            if (b3) b3.className = tabNum === 3 ? activeClass + " flex items-center justify-center gap-1.5" : inactiveClass + " flex items-center justify-center gap-1.5";
+            if (b4) b4.className = tabNum === 4 ? activeClass + " flex items-center justify-center gap-1.5" : inactiveClass + " flex items-center justify-center gap-1.5";
+
+            if (tabNum === 1 || tabNum === 2) {
+                if (nestTable) nestTable.classList.remove('hidden');
+                if (luckyView) luckyView.classList.add('hidden');
+                if (kalkulatorView) kalkulatorView.classList.add('hidden');
+
+                if (nestStats) nestStats.classList.remove('hidden');
+                if (nestActions) nestActions.classList.remove('hidden');
+                if (searchBox) searchBox.classList.remove('hidden');
+                if (lzActions) lzActions.classList.add('hidden');
+
+                renderTable(document.getElementById('searchInput') ? document.getElementById('searchInput').value : '');
+            } else if (tabNum === 3) {
+                if (nestTable) nestTable.classList.add('hidden');
+                if (luckyView) luckyView.classList.remove('hidden');
+                if (kalkulatorView) kalkulatorView.classList.add('hidden');
+
+                if (nestStats) nestStats.classList.add('hidden');
+                if (nestActions) nestActions.classList.add('hidden');
+                if (searchBox) searchBox.classList.add('hidden');
+                if (lzActions) lzActions.classList.remove('hidden');
+
+                renderLuckyZone();
+            } else if (tabNum === 4) {
+                if (nestTable) nestTable.classList.add('hidden');
+                if (luckyView) luckyView.classList.add('hidden');
+                if (kalkulatorView) kalkulatorView.classList.remove('hidden');
+
+                if (nestStats) nestStats.classList.add('hidden');
+                if (nestActions) nestActions.classList.add('hidden');
+                if (searchBox) searchBox.classList.add('hidden');
+                if (lzActions) lzActions.classList.add('hidden');
+
+                renderExcelSalary();
+            }
+        }
+
+        function renderExcelSalary() {
+            const itemContainer = document.getElementById('itemSellingRowsContainer');
+            if (itemContainer) {
+                itemContainer.innerHTML = '';
+                excelItems.forEach((item, index) => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = "grid grid-cols-12 text-xs items-center bg-[#eab308] hover:bg-[#facc15] transition";
+                    
+                    const rawPrice = item.price ? String(item.price).replace(/[^0-9.]/g, '').trim() : '';
+                    const displayPrice = rawPrice ? rawPrice + 'g' : '';
+
+                    rowDiv.innerHTML = 
+                        '<div class="col-span-2 text-center text-slate-950 font-bold font-mono py-1.5 border-r border-blue-700/30 bg-[#eab308]">' + (index + 1) + '</div>' +
+                        '<div class="col-span-6 px-2 py-1.5 border-r border-blue-700/30 bg-[#eab308]"><input type="text" value="' + (item.name || '') + '" onfocus="this.value=\'\'; updateExcelItem(' + index + ', \'name\', \'\');" oninput="updateExcelItem(' + index + ', \'name\', this.value)" placeholder="" class="w-full bg-transparent text-slate-950 font-medium text-center outline-none focus:outline-none focus:ring-0 placeholder:text-slate-600/70"></div>' +
+                        '<div class="col-span-4 px-2 py-1.5 bg-[#eab308]"><input type="text" value="' + displayPrice + '" onfocus="this.value=\'\'; updateExcelItem(' + index + ', \'_clear\', \'\');" oninput="this.value=this.value.replace(/[^0-9.]/g, \'\'); updateExcelItem(' + index + ', \'price\', this.value)" onblur="formatExcelPrice(' + index + ')" placeholder="" class="w-full bg-transparent text-slate-950 font-mono font-bold text-center outline-none focus:outline-none focus:ring-0 placeholder:text-slate-700"></div>';
+                    itemContainer.appendChild(rowDiv);
+                });
+            }
+
+            const stampContainer = document.getElementById('stampUsedRowsContainer');
+            if (stampContainer) {
+                stampContainer.innerHTML = '';
+                excelStamps.forEach((stamp, index) => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = "grid grid-cols-12 text-xs items-center";
+                    rowDiv.innerHTML = 
+                        '<div class="col-span-5 px-2.5 py-2 border-r border-blue-700/30 bg-[#eab308]"><input type="text" value="' + (stamp.nick || '') + '" onfocus="this.value=\'\'; updateExcelStamp(' + index + ', \'nick\', \'\');" oninput="updateExcelStamp(' + index + ', \'nick\', this.value)" class="w-full bg-transparent text-slate-950 font-bold text-center outline-none focus:outline-none focus:ring-0" placeholder=""></div>' +
+                        '<div class="col-span-3 px-2 py-2 border-r border-blue-700/30 bg-[#eab308]"><input type="number" value="' + (stamp.count !== '' && stamp.count !== 0 && !isNaN(stamp.count) ? stamp.count : '') + '" onfocus="this.select();" oninput="updateExcelStamp(' + index + ', \'count\', this.value)" placeholder="" class="w-full bg-transparent text-slate-950 font-mono font-bold text-center outline-none focus:outline-none focus:ring-0"></div>' +
+                        '<div class="col-span-4 px-2.5 py-2 text-right font-mono text-white font-bold bg-[#ef4444]" id="stampGoldRow_' + index + '">0,00g</div>';
+                    stampContainer.appendChild(rowDiv);
+                });
+            }
+
+            const memberContainer = document.getElementById('memberShareRowsContainer');
+            if (memberContainer) {
+                memberContainer.innerHTML = '';
+                excelMembers.forEach((member, index) => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = "grid grid-cols-12 text-xs items-center";
+                    const nickText = member.nick && member.nick.trim() !== '' ? member.nick : '&nbsp;';
+                    rowDiv.innerHTML = 
+                        '<div class="col-span-6 px-2.5 py-2 border-r border-blue-700/30 bg-[#eab308] text-slate-950 font-bold text-center truncate select-none min-h-[36px] flex items-center justify-center" id="memberNickDisplay_' + index + '">' + nickText + '</div>' +
+                        '<div class="col-span-6 px-2.5 py-2 text-right font-mono text-slate-950 font-extrabold bg-[#22c55e] min-h-[36px] flex items-center justify-end" id="memberShareRow_' + index + '">@0,00g</div>';
+                    memberContainer.appendChild(rowDiv);
+                });
+            }
+
+            calculateExcelSalary();
+        }
+
+        function updateExcelItem(index, field, val) {
+            if (field === '_clear') {
+                excelItems[index].price = '';
+            } else if (field === 'name') {
+                excelItems[index].name = val;
+            } else if (field === 'price') {
+                excelItems[index].price = val === '' ? '' : val;
+            }
+            saveData();
+            calculateExcelSalary();
+        }
+
+        function formatExcelPrice(index) {
+            const raw = excelItems[index].price;
+            if (raw !== undefined && raw !== null && String(raw).trim() !== '') {
+                const cleanNum = String(raw).replace(/[^0-9.]/g, '').trim();
+                if (cleanNum !== '') {
+                    excelItems[index].price = cleanNum + 'g';
+                } else {
+                    excelItems[index].price = '';
+                }
+            } else {
+                excelItems[index].price = '';
+            }
+            saveData();
+            renderExcelSalary();
+        }
+
+        function formatStampUnitPrice(inputEl) {
+            if (!inputEl) return;
+            const cleanNum = inputEl.value.replace(/[^0-9.]/g, '').trim();
+            if (cleanNum !== '') {
+                inputEl.value = cleanNum + 'g';
+            } else {
+                inputEl.value = '';
+            }
+            calculateExcelSalary();
+        }
+
+        function formatTradeFeeInput(inputEl) {
+            if (!inputEl) return;
+            const cleanNum = inputEl.value.replace(/[^0-9.]/g, '').trim();
+            if (cleanNum !== '') {
+                inputEl.value = cleanNum + 'g';
+            } else {
+                inputEl.value = '';
+            }
+            calculateExcelSalary();
+        }
+
+        function updateExcelStamp(index, field, val) {
+            if (field === 'nick') {
+                excelStamps[index].nick = val;
+                excelMembers[index].nick = val;
+                const memberEl = document.getElementById('memberNickDisplay_' + index);
+                if (memberEl) {
+                    memberEl.innerHTML = (val && val.trim() !== '') ? val : '&nbsp;';
+                }
+            }
+            if (field === 'count') {
+                excelStamps[index].count = val === '' ? '' : (parseFloat(val) || 0);
+            }
+            saveData();
+            calculateExcelSalary();
+        }
+
+        function calculateExcelSalary() {
+            let totalSelling = 0;
+            excelItems.forEach(item => {
+                if (item.price !== undefined && item.price !== null) {
+                    let cleanNum = parseFloat(String(item.price).replace(/[^0-9.]/g, '').trim()) || 0;
+                    totalSelling += cleanNum;
+                }
+            });
+            const totalSellingEl = document.getElementById('calcTotalItemSelling');
+            if (totalSellingEl) totalSellingEl.innerText = totalSelling.toLocaleString('id-ID') + 'g';
+
+            const stampUnitPriceRaw = document.getElementById('stampUnitPriceInput') ? document.getElementById('stampUnitPriceInput').value : '4';
+            const stampUnitPrice = parseFloat(String(stampUnitPriceRaw).replace(/[^0-9.]/g, '')) || 0;
+
+            let totalStampGold = 0;
+            excelStamps.forEach((stamp, index) => {
+                const countVal = stamp.count === '' ? 0 : (parseFloat(stamp.count) || 0);
+                const goldVal = countVal * stampUnitPrice;
+                totalStampGold += goldVal;
+                
+                const rowGoldEl = document.getElementById('stampGoldRow_' + index);
+                if (rowGoldEl) {
+                    rowGoldEl.innerText = goldVal.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+                }
+            });
+
+            const totalStampGoldEl = document.getElementById('calcTotalStampGold');
+            if (totalStampGoldEl) {
+                totalStampGoldEl.innerText = totalStampGold.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            }
+
+            const summarySellingEl = document.getElementById('salarySummaryTotalSelling');
+            const summaryStampEl = document.getElementById('salarySummaryStamp');
+            const summaryTradeFeeEl = document.getElementById('salarySummaryTradeFee');
+
+            if (summarySellingEl) summarySellingEl.innerText = totalSelling.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            if (summaryStampEl) summaryStampEl.innerText = totalStampGold.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+
+            const tradeFeeValRaw = document.getElementById('tradeFeeTotalInput') ? document.getElementById('tradeFeeTotalInput').value : '1';
+            const tradeFeePerMemberInput = parseFloat(String(tradeFeeValRaw).replace(/[^0-9.]/g, '')) || 0;
+            const totalTradeFee = tradeFeePerMemberInput * 8;
+            
+            const tradeFeeRedDisplayEl = document.getElementById('tradeFeeRedDisplay');
+            if (tradeFeeRedDisplayEl) {
+                tradeFeeRedDisplayEl.innerText = totalTradeFee.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            }
+            if (summaryTradeFeeEl) {
+                summaryTradeFeeEl.innerText = totalTradeFee.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            }
+
+            const partyNetTotal = totalSelling - totalStampGold - totalTradeFee;
+            const partyNetEl = document.getElementById('partySalaryNetTotal');
+            if (partyNetEl) {
+                partyNetEl.innerText = partyNetTotal.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            }
+
+            // Gaji bersih dasar per player (Party Salary Net Total / 8)
+            const baseSalaryPerPlayer = partyNetTotal / 8;
+
+            excelStamps.forEach((stamp, index) => {
+                const countVal = stamp.count === '' ? 0 : (parseFloat(stamp.count) || 0);
+                const memberStampGold = countVal * stampUnitPrice;
+                const totalMemberReceive = baseSalaryPerPlayer + memberStampGold;
+
+                const memberRowEl = document.getElementById('memberShareRow_' + index);
+                if (memberRowEl) {
+                    memberRowEl.innerText = '@' + totalMemberReceive.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+                }
+            });
+
+            // Tampilkan gaji murni per player pada banner hijau paling bawah
+            const bigPayoutEl = document.getElementById('bigFinalPayoutDisplay');
+            if (bigPayoutEl) {
+                bigPayoutEl.innerText = '@' + baseSalaryPerPlayer.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + 'g';
+            }
+        }
+
+        function openExcelResetModal() {
+            const modal = document.getElementById('excelResetModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeExcelResetModal() {
+            const modal = document.getElementById('excelResetModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function executeExcelReset() {
+            resetExcelSalary();
+            closeExcelResetModal();
+        }
+
+        function resetExcelSalary() {
+            excelItems = Array.from({length: 15}, () => ({ name: '', price: '' }));
+            excelStamps = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1), count: '' }));
+            excelMembers = Array.from({length: 8}, (_, i) => ({ nick: 'Nick ' + (i + 1) }));
+            if (document.getElementById('stampUnitPriceInput')) document.getElementById('stampUnitPriceInput').value = '4g';
+            if (document.getElementById('tradeFeeTotalInput')) document.getElementById('tradeFeeTotalInput').value = '1g';
+            saveData();
+            renderExcelSalary();
+            showToast("Kalkulator Gaji Excel direset ke default!");
         }
 
         function getHeaderCurrentDateObj() {
@@ -1004,82 +1388,129 @@
         }
 
         function updateHeaderCalendarDisplay() {
-            const now = getHeaderCurrentDateObj();
+            const dateObj = getHeaderCurrentDateObj();
+            const year = dateObj.getUTCFullYear();
+            const month = dateObj.getUTCMonth();
+            const date = dateObj.getUTCDate();
+            const day = dateObj.getUTCDay();
 
-            const year = now.getUTCFullYear();
-            const month = String(now.getUTCMonth() + 1).padStart(2, '0');
-            const day = String(now.getUTCDate()).padStart(2, '0');
-            const dayNum = now.getUTCDate();
-            const dateKey = year + '-' + month + '-' + day;
-
-            const dateText = dayNames[now.getUTCDay()] + ", " + now.getUTCDate() + " " + monthNames[now.getUTCMonth()] + " " + year;
-            document.getElementById('headerCurrentDateText').innerText = dateText;
-
-            const timeStr = String(now.getUTCHours()).padStart(2, '0') + ":" + String(now.getUTCMinutes()).padStart(2, '0') + ":" + String(now.getUTCSeconds()).padStart(2, '0');
-            const tzLabel = tzMap[resetSettings.dailyTzOffset !== undefined ? resetSettings.dailyTzOffset : 8] || "WITA";
-
-            // Update Daily Lucky Stage Badge in Header
-            const todayStageObj = defaultLuckyZoneSchedule[dayNum] || defaultLuckyZoneSchedule[1];
-            const activeStageName = todayStageObj['r' + selectedActiveRotation];
-            const headerLzText = document.getElementById('headerDailyLuckyStageText');
-            if (headerLzText) {
-                headerLzText.innerText = activeStageName;
-            }
-
-            let holidayName = defaultHolidays[dateKey] || "";
-            if (customDateNotes[dateKey] && customDateNotes[dateKey].holiday) {
-                holidayName = customDateNotes[dateKey].holiday;
-            }
-
-            const holidayEl = document.getElementById('headerHolidayText');
-            if (holidayEl) {
-                if (holidayName) {
-                    holidayEl.innerHTML = '<span class="text-rose-400 font-medium">Libur: ' + holidayName + '</span> <span class="text-slate-500">|</span> <span class="font-mono text-amber-300 font-bold">' + timeStr + ' ' + tzLabel + '</span>';
-                } else {
-                    holidayEl.innerHTML = '<span class="font-mono text-amber-300 font-bold">' + timeStr + ' ' + tzLabel + '</span>';
-                }
-            }
-        }
-
-        function checkMonthRotation() {
-            const now = getHeaderCurrentDateObj();
-            const currentMonthKey = now.getUTCFullYear() + '-' + String(now.getUTCMonth() + 1).padStart(2, '0');
-            const savedMonthKey = localStorage.getItem('dn_sea_active_rotation_month');
-
-            if (savedMonthKey !== currentMonthKey) {
-                // New month detected! Reset rotation selection bound to new month
-                selectedActiveRotation = 1;
-                try {
-                    localStorage.setItem('dn_sea_active_rotation', 1);
-                    localStorage.setItem('dn_sea_active_rotation_month', currentMonthKey);
-                } catch(e) {}
-            } else {
-                const savedActiveRot = localStorage.getItem('dn_sea_active_rotation');
-                if (savedActiveRot) {
-                    const rotNum = parseInt(savedActiveRot, 10);
-                    if (rotNum >= 1 && rotNum <= 3) {
-                        selectedActiveRotation = rotNum;
-                    }
-                }
-            }
-        }
-
-        function openRotationConfirmModal(rotNum) {
-            if (rotNum < 1 || rotNum > 3) return;
-            if (rotNum === selectedActiveRotation) {
-                showToast("Rotasi " + rotNum + " sudah aktif untuk bulan ini.");
-                return;
-            }
-            pendingRotationTarget = rotNum;
-
-            const now = getHeaderCurrentDateObj();
-            const monthYearStr = monthNames[now.getUTCMonth()] + " " + now.getUTCFullYear();
-
-            const targetTextEl = document.getElementById('confirmRotTargetText');
-            const monthTextEl = document.getElementById('confirmRotMonthText');
+            const dateKey = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(date).padStart(2, '0');
             
-            if (targetTextEl) targetTextEl.innerText = "Rotasi " + rotNum;
-            if (monthTextEl) monthTextEl.innerText = monthYearStr;
+            const dateTextEl = document.getElementById('headerCurrentDateText');
+            if (dateTextEl) {
+                dateTextEl.innerText = dayNames[day] + ", " + date + " " + monthNames[month] + " " + year;
+            }
+
+            const stageObj = defaultLuckyZoneSchedule[date] || defaultLuckyZoneSchedule[1];
+            const activeStage = stageObj['r' + selectedActiveRotation];
+
+            const luckyStageTextEl = document.getElementById('headerDailyLuckyStageText');
+            if (luckyStageTextEl) {
+                luckyStageTextEl.innerText = activeStage;
+            }
+
+            const customHoliday = customDateNotes[dateKey] && customDateNotes[dateKey].holiday;
+            const defaultHoliday = defaultHolidays[dateKey];
+            const holidayText = customHoliday || defaultHoliday || "Hari Biasa";
+
+            const holidayTextEl = document.getElementById('headerHolidayText');
+            if (holidayTextEl) {
+                holidayTextEl.innerText = holidayText;
+            }
+        }
+
+        function renderLuckyZone() {
+            const dateObj = getHeaderCurrentDateObj();
+            const year = dateObj.getUTCFullYear();
+            const month = dateObj.getUTCMonth();
+            const date = dateObj.getUTCDate();
+            const day = dateObj.getUTCDay();
+
+            const fullDateTextEl = document.getElementById('lzHeaderFullDateText');
+            if (fullDateTextEl) {
+                fullDateTextEl.innerText = dayNames[day] + ", " + date + " " + monthNames[month] + " " + year;
+            }
+
+            const rotBadge = document.getElementById('lzActiveRotBadge');
+            if (rotBadge) rotBadge.innerText = 'Rotasi ' + selectedActiveRotation;
+
+            let freshCount = 0;
+            let limitCount = 0;
+            savedHeroesList.forEach(hero => {
+                if (nestState[hero] && nestState[hero]["DAILY"] === "LIMIT") {
+                    limitCount++;
+                } else {
+                    freshCount++;
+                }
+            });
+
+            const summaryTextEl = document.getElementById('lzDailyQuestSummaryText');
+            if (summaryTextEl) {
+                summaryTextEl.innerHTML = '<span class="text-emerald-400">' + freshCount + ' FRESH</span> / <span class="text-rose-400">' + limitCount + ' LIMIT</span>';
+            }
+
+            const stageObj = defaultLuckyZoneSchedule[date] || defaultLuckyZoneSchedule[1];
+            const activeStage = stageObj['r' + selectedActiveRotation];
+
+            const mainStageEl = document.getElementById('lzMainStageTitle');
+            if (mainStageEl) mainStageEl.innerText = activeStage;
+
+            const sub1 = document.getElementById('subStageRot1');
+            const sub2 = document.getElementById('subStageRot2');
+            const sub3 = document.getElementById('subStageRot3');
+            if (sub1) sub1.innerText = stageObj.r1;
+            if (sub2) sub2.innerText = stageObj.r2;
+            if (sub3) sub3.innerText = stageObj.r3;
+
+            const rotBtn1 = document.getElementById('rotBtn1');
+            const rotBtn2 = document.getElementById('rotBtn2');
+            const rotBtn3 = document.getElementById('rotBtn3');
+
+            const activeRotBtnClass = "px-2.5 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow";
+            const inactiveRotBtnClass = "px-2.5 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white";
+
+            if (rotBtn1) rotBtn1.className = selectedActiveRotation === 1 ? activeRotBtnClass : inactiveRotBtnClass;
+            if (rotBtn2) rotBtn2.className = selectedActiveRotation === 2 ? activeRotBtnClass : inactiveRotBtnClass;
+            if (rotBtn3) rotBtn3.className = selectedActiveRotation === 3 ? activeRotBtnClass : inactiveRotBtnClass;
+
+            const tableBody = document.getElementById('luckyZoneTableBody');
+            if (!tableBody) return;
+            tableBody.innerHTML = '';
+
+            for (let d = 1; d <= 31; d++) {
+                const item = defaultLuckyZoneSchedule[d];
+                const isTodayDate = d === date;
+                const tr = document.createElement('tr');
+                
+                let trClass = "hover:bg-slate-800/40 transition-colors border-b border-slate-800/40";
+                if (isTodayDate) trClass = "bg-amber-500/10 hover:bg-amber-500/15 border-b border-amber-500/40 font-bold";
+
+                tr.className = trClass;
+
+                const r1Class = selectedActiveRotation === 1 ? "bg-amber-500/15 font-extrabold text-amber-300 border-r border-slate-800" : "border-r border-slate-800 text-slate-300";
+                const r2Class = selectedActiveRotation === 2 ? "bg-amber-500/15 font-extrabold text-amber-300 border-r border-slate-800" : "border-r border-slate-800 text-slate-300";
+                const r3Class = selectedActiveRotation === 3 ? "bg-amber-500/15 font-extrabold text-amber-300" : "text-slate-300";
+
+                tr.innerHTML = 
+                    '<td class="py-2 px-3 text-center border-r border-slate-800 font-mono text-slate-200">' + (isTodayDate ? '<span class="bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded text-[10px] font-black mr-1">HARI INI</span>' : '') + 'Tgl ' + d + '</td>' +
+                    '<td class="py-2 px-4 ' + r1Class + '">' + item.r1 + '</td>' +
+                    '<td class="py-2 px-4 ' + r2Class + '">' + item.r2 + '</td>' +
+                    '<td class="py-2 px-4 ' + r3Class + '">' + item.r3 + '</td>';
+
+                tableBody.appendChild(tr);
+            }
+        }
+
+        let pendingRotationSelection = 1;
+        function openRotationConfirmModal(rotNum) {
+            pendingRotationSelection = rotNum;
+            const targetText = document.getElementById('confirmRotTargetText');
+            const monthText = document.getElementById('confirmRotMonthText');
+            
+            if (targetText) targetText.innerText = 'Rotasi ' + rotNum;
+            
+            const dateObj = getHeaderCurrentDateObj();
+            if (monthText) monthText.innerText = monthNames[dateObj.getUTCMonth()] + " " + dateObj.getUTCFullYear();
 
             document.getElementById('rotationConfirmModal').classList.remove('hidden');
         }
@@ -1089,202 +1520,12 @@
         }
 
         function confirmSelectActiveRotation() {
-            selectActiveRotation(pendingRotationTarget);
-            closeRotationConfirmModal();
-        }
-
-        function selectActiveRotation(rotNum) {
-            if (rotNum < 1 || rotNum > 3) return;
-            selectedActiveRotation = rotNum;
-
-            const now = getHeaderCurrentDateObj();
-            const currentMonthKey = now.getUTCFullYear() + '-' + String(now.getUTCMonth() + 1).padStart(2, '0');
-
-            try {
-                localStorage.setItem('dn_sea_active_rotation', selectedActiveRotation);
-                localStorage.setItem('dn_sea_active_rotation_month', currentMonthKey);
-            } catch(e) {}
-
+            selectedActiveRotation = pendingRotationSelection;
             saveData();
             updateHeaderCalendarDisplay();
             renderLuckyZone();
-            if (selectedCalendarDateKey) selectCalendarDate(selectedCalendarDateKey);
-            showToast("Rotasi " + rotNum + " tersimpan sampai pergantian bulan!");
-        }
-
-        function renderLuckyZone() {
-            checkMonthRotation();
-            const now = getHeaderCurrentDateObj();
-
-            const currentDayOfMonth = now.getUTCDate();
-            const currentMonthName = monthNames[now.getUTCMonth()];
-            const currentYear = now.getUTCFullYear();
-            const currentDayName = dayNames[now.getUTCDay()];
-            const tzLabel = tzMap[resetSettings.dailyTzOffset !== undefined ? resetSettings.dailyTzOffset : 8] || "WITA";
-
-            const fullDateString = currentDayName + ", " + currentDayOfMonth + " " + currentMonthName + " " + currentYear + " (" + tzLabel + ")";
-            
-            const lzHeaderDateEl = document.getElementById('lzHeaderFullDateText');
-            if (lzHeaderDateEl) {
-                lzHeaderDateEl.innerHTML = fullDateString + ' <span class="text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded ml-1.5">Tanggal ' + currentDayOfMonth + '</span>';
-            }
-
-            const activeBadgeEl = document.getElementById('lzActiveRotBadge');
-            if (activeBadgeEl) {
-                activeBadgeEl.innerText = "Mode Rotasi " + selectedActiveRotation;
-            }
-
-            // Update rotation selector buttons in top bar
-            [1, 2, 3].forEach(num => {
-                const b1 = document.getElementById('rotBtn' + num);
-                const isActive = num === selectedActiveRotation;
-                
-                const activeClasses = "bg-amber-500 text-slate-950 font-bold shadow";
-                const inactiveClasses = "text-slate-400 hover:text-white font-medium";
-
-                if (b1) b1.className = "px-2.5 py-1 rounded text-xs transition " + (isActive ? activeClasses : inactiveClasses);
-            });
-
-            // Get stage for today
-            const todayStageObj = defaultLuckyZoneSchedule[currentDayOfMonth] || {
-                r1: "The Vanished Full Moon Desert",
-                r2: "Eclipse Canyon",
-                r3: "Sea of Sand"
-            };
-
-            const selectedStageName = todayStageObj['r' + selectedActiveRotation];
-
-            // Set main highlight stage title
-            const mainStageTitleEl = document.getElementById('lzMainStageTitle');
-            if (mainStageTitleEl) {
-                mainStageTitleEl.innerHTML = selectedStageName + ' <span class="text-xs bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded border border-amber-500/40">Rotasi ' + selectedActiveRotation + '</span>';
-            }
-
-            // Calculate current Daily Quest status across all characters
-            let dailyFreshCount = 0;
-            let dailyLimitCount = 0;
-            savedHeroesList.forEach(function(hero) {
-                if (nestState[hero] && nestState[hero]["DAILY"] === "LIMIT") {
-                    dailyLimitCount++;
-                } else {
-                    dailyFreshCount++;
-                }
-            });
-
-            const summaryEl = document.getElementById('lzDailyQuestSummaryText');
-            if (summaryEl) {
-                summaryEl.innerHTML = '<span class="text-emerald-400 font-extrabold"><i class="fa-solid fa-shield-halved mr-1"></i>' + dailyFreshCount + ' FRESH</span> / <span class="text-rose-400 font-extrabold"><i class="fa-solid fa-lock mr-1"></i>' + dailyLimitCount + ' LIMIT</span>';
-            }
-
-            // Set comparison cards below
-            [1, 2, 3].forEach(num => {
-                const subTitleEl = document.getElementById('subStageRot' + num);
-                const subCardEl = document.getElementById('subCardRot' + num);
-                if (subTitleEl) subTitleEl.innerText = todayStageObj['r' + num];
-                if (subCardEl) {
-                    if (num === selectedActiveRotation) {
-                        subCardEl.className = "bg-amber-500/15 border-2 border-amber-500/60 rounded-lg p-2.5 font-bold shadow-md";
-                    } else {
-                        subCardEl.className = "bg-slate-950/70 border border-slate-800 rounded-lg p-2.5";
-                    }
-                }
-            });
-
-            // Update table header column highlight
-            [1, 2, 3].forEach(num => {
-                const thEl = document.getElementById('thRot' + num);
-                if (thEl) {
-                    if (num === selectedActiveRotation) {
-                        thEl.className = "py-2.5 px-4 border-r border-slate-800 text-amber-300 bg-amber-500/20 font-extrabold";
-                    } else {
-                        thEl.className = "py-2.5 px-4 border-r border-slate-800 text-slate-400";
-                    }
-                }
-            });
-
-            // Render 31-day table body
-            const tbody = document.getElementById('luckyZoneTableBody');
-            if (tbody) {
-                tbody.innerHTML = '';
-                for (let day = 1; day <= 31; day++) {
-                    const stageObj = defaultLuckyZoneSchedule[day] || { r1: '--', r2: '--', r3: '--' };
-                    const isToday = day === currentDayOfMonth;
-
-                    const tr = document.createElement('tr');
-                    let trClass = "hover:bg-slate-800/40 transition-colors";
-                    if (isToday) trClass += " bg-amber-500/10 border-l-4 border-l-amber-500 font-bold";
-
-                    tr.className = trClass;
-
-                    let rowHtml = '<td class="py-2.5 px-3 text-center border-r border-slate-800 font-mono font-bold ' + (isToday ? 'text-amber-400' : 'text-slate-300') + '">' +
-                        'Tanggal ' + day + (isToday ? ' <span class="ml-1 text-[9px] bg-amber-500 text-slate-950 font-extrabold px-1.5 py-0.5 rounded">Hari Ini</span>' : '') +
-                    '</td>';
-
-                    [1, 2, 3].forEach(num => {
-                        const isSelectedCol = num === selectedActiveRotation;
-                        const cellStage = stageObj['r' + num];
-                        let colClass = "py-2.5 px-4 border-r border-slate-800 ";
-                        if (isSelectedCol) {
-                            colClass += "bg-amber-500/10 text-amber-300 font-bold";
-                        } else {
-                            colClass += "text-slate-300";
-                        }
-                        rowHtml += '<td class="' + colClass + '">' + cellStage + '</td>';
-                    });
-
-                    tr.innerHTML = rowHtml;
-                    tbody.appendChild(tr);
-                }
-            }
-        }
-
-        function switchTab(tabNum) {
-            activeTab = tabNum;
-            const btn1 = document.getElementById('tabBtn1');
-            const btn2 = document.getElementById('tabBtn2');
-            const btn3 = document.getElementById('tabBtn3');
-
-            const nestStats = document.getElementById('nestStatsContainer');
-            const searchBox = document.getElementById('searchBoxContainer');
-            const nestActions = document.getElementById('nestActionsContainer');
-            const lzActions = document.getElementById('luckyZoneActionsContainer');
-            const nestTableView = document.getElementById('nestTableView');
-            const luckyZoneView = document.getElementById('luckyZoneView');
-
-            if (!btn1 || !btn2 || !btn3) return;
-
-            btn1.className = "px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white whitespace-nowrap";
-            btn2.className = "px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white whitespace-nowrap";
-            btn3.className = "px-3 py-1 rounded text-xs font-bold transition text-slate-400 hover:text-white flex items-center gap-1.5 whitespace-nowrap";
-
-            if (tabNum === 1) {
-                btn1.className = "px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap";
-                if (nestStats) nestStats.classList.remove('hidden');
-                if (searchBox) searchBox.classList.remove('hidden');
-                if (nestActions) nestActions.classList.remove('hidden');
-                if (lzActions) lzActions.classList.add('hidden');
-                if (nestTableView) nestTableView.classList.remove('hidden');
-                if (luckyZoneView) luckyZoneView.classList.add('hidden');
-                renderTable(document.getElementById('searchInput') ? document.getElementById('searchInput').value : '');
-            } else if (tabNum === 2) {
-                btn2.className = "px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap";
-                if (nestStats) nestStats.classList.remove('hidden');
-                if (searchBox) searchBox.classList.remove('hidden');
-                if (nestActions) nestActions.classList.remove('hidden');
-                if (lzActions) lzActions.classList.add('hidden');
-                if (nestTableView) nestTableView.classList.remove('hidden');
-                if (luckyZoneView) luckyZoneView.classList.add('hidden');
-                renderTable(document.getElementById('searchInput') ? document.getElementById('searchInput').value : '');
-            } else if (tabNum === 3) {
-                btn3.className = "px-3 py-1 rounded text-xs font-bold transition bg-amber-500 text-slate-950 shadow whitespace-nowrap";
-                if (nestStats) nestStats.classList.add('hidden');
-                if (searchBox) searchBox.classList.add('hidden');
-                if (nestActions) nestActions.classList.add('hidden');
-                if (lzActions) lzActions.classList.remove('hidden');
-                if (nestTableView) nestTableView.classList.add('hidden');
-                if (luckyZoneView) luckyZoneView.classList.remove('hidden');
-                renderLuckyZone();
-            }
+            closeRotationConfirmModal();
+            showToast("Rotasi " + selectedActiveRotation + " berhasil diaktifkan!");
         }
 
         function openCalendarModal() {
@@ -1378,7 +1619,6 @@
             const labelEl = document.getElementById('selectedDateLabel');
             if (labelEl) labelEl.innerText = "Tanggal: " + d + " " + monthNames[m] + " " + y;
 
-            // Sync Lucky Stage for selected calendar date
             const stageObj = defaultLuckyZoneSchedule[d] || defaultLuckyZoneSchedule[1];
             const activeStage = stageObj['r' + selectedActiveRotation];
 
@@ -1580,6 +1820,8 @@
                 localStorage.removeItem('dn_sea_tracker_data');
                 localStorage.removeItem('dn_sea_tracker_fit');
                 localStorage.removeItem('dn_sea_active_rotation');
+                localStorage.removeItem('dn_sea_excel_items');
+                localStorage.removeItem('dn_sea_excel_stamps');
             } catch(e) {}
 
             for (const key in customLogos) {
@@ -1594,6 +1836,7 @@
             initDefaultState();
             renderTable();
             renderLuckyZone();
+            resetExcelSalary();
             closeMasterResetModal();
             showToast("Data judul, logo, dan list nama berhasil direset!");
         }
@@ -1698,7 +1941,7 @@
         }
 
         function renderTable(filterText) {
-            if (activeTab === 3) return;
+            if (activeTab === 3 || activeTab === 4) return;
 
             const theadRow = document.getElementById('tableHeaderRow');
             const currentNests = activeTab === 1 ? tab1Nests : tab2Nests;
@@ -1821,9 +2064,7 @@
                 } else if (urlInput) {
                     processedLogo = await compressAndProcessImage(urlInput, 1600);
                 }
-            } catch(e) {
-                console.warn("Gagal memproses gambar:", e);
-            }
+            } catch(e) {}
 
             savedHeroesList.push(heroName);
             if (!nestState[heroName]) {
@@ -2109,9 +2350,7 @@
                 } else if (urlInput) {
                     compressedImage = await compressAndProcessImage(urlInput, 1600);
                 }
-            } catch (err) {
-                console.warn("Gagal mengompres gambar:", err);
-            }
+            } catch (err) {}
 
             if (activeLogoTarget === '__HEADER__') {
                 if (compressedImage) {
@@ -2187,13 +2426,11 @@
                         statusBadge.className = "text-[9px] px-2 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center gap-1";
                         statusBadge.innerHTML = '<i class="fa-solid fa-wifi text-[8px]"></i> Online';
                     }
-                    showToast("Koneksi Online - Auto Save Siap!");
                 } else {
                     if (statusBadge) {
                         statusBadge.className = "text-[9px] px-2 py-0.5 rounded-full font-bold bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center gap-1";
                         statusBadge.innerHTML = '<i class="fa-solid fa-plane text-[8px]"></i> Offline Mode';
                     }
-                    showToast("Mode Offline Aktif - Data Tersimpan!");
                 }
             }
 
